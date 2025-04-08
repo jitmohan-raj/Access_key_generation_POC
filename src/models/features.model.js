@@ -1,5 +1,6 @@
 const { Model } = require("objection");
 const { DBconnection } = require("../config/db_connection");
+const { knex } = require("../config/db_connection");
 
 class Feature extends Model {
   static get tableName() {
@@ -24,9 +25,10 @@ class Feature extends Model {
     };
   }
 
-  static get knex() {
-    return DBconnection;
-  }
+  // static get knex() {
+  //   return DBconnection;
+  // }
 }
+Model.knex(knex);
 
 module.exports = Feature;

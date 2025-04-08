@@ -13,9 +13,9 @@ const createAccessKey = async (accessKeyData) => {
   return AccessKey.query().insert(accessKeyData);
 };
 
-const validateAccessKey = async (key) => {
+const validateAccessKey = async (access_key) => {
   const accessKey = await AccessKey.query()
-    .findOne({ key })
+    .findOne({ access_key })
     .withGraphFetched("[plan, features]");
 
   if (!accessKey) return { valid: false, message: "Invalid access key" };

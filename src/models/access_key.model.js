@@ -1,5 +1,7 @@
 const { Model } = require("objection");
 const { DBconnection } = require("../config/db_connection");
+const { knex } = require("../config/db_connection");
+
 
 class AccessKey extends Model {
   static get tableName() {
@@ -7,7 +9,7 @@ class AccessKey extends Model {
   }
 
   static get idColumn() {
-    return "access_key_id";
+    return "id";
   }
 
   static get relationMappings() {
@@ -25,9 +27,10 @@ class AccessKey extends Model {
     };
   }
 
-  static get knex() {
-    return DBconnection;
-  }
+  // static get knex() {
+  //   return DBconnection;
+  // }
 }
+Model.knex(knex);
 
 module.exports = AccessKey;

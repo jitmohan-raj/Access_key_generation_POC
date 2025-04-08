@@ -3,15 +3,15 @@ const { generateAccessKey } = require("../utils/accessKeyGenerator");
 
 const createAccessKey = async (req, res) => {
   try {
-    const { product_id, subscription_id, plan_id, expires_at } = req.body;
-    const key = generateAccessKey(product_id, subscription_id);
+    const { product_id, subscription_id, plan_id,  end_date:expires_at, } = req.body;
+    const access_key = generateAccessKey(product_id, subscription_id);
 
     const newKey = await accessKeyDAO.createAccessKey({
-      key,
+      access_key,
       product_id,
       subscription_id,
       plan_id,
-      expires_at,
+      end_date: expires_at,
     });
 
     res.status(201).json({ success: true, message: "Access key created", data: newKey });

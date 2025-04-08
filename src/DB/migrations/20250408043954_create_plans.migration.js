@@ -7,6 +7,7 @@ exports.up = function (knex) {
     table.increments("id").primary();
     table.string("name").unique().notNullable(); // Free, Basic, etc.
     table.integer("feature_limit").notNullable();
+    table.integer("duration_days").notNullable(); // Duration in days
   });
 };
 
